@@ -6,6 +6,45 @@
     <title>Unity WebGL Player | Hearts Games</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script type="text/javascript">
+      var gameInstance;
+      
+      // Load the Unity game
+      window.onload = function () {
+          gameInstance = UnityLoader.instantiate("gameContainer", "Build/Hearts%20Games.json", {background: true});
+      };
+
+      // Prevent game from stopping when the tab is inactive
+      window.onblur = function () {
+          console.log("Tab is inactive, but the game will keep running.");
+      };
+
+      window.onfocus = function () {
+          console.log("Tab is active again.");
+      };
+
+      // Optional: If you want to use requestAnimationFrame to further ensure smoothness
+      function keepRunning() {
+          if (document.hidden) {
+              // Reduce the frame rate or processing load here, if needed
+              console.log("Running in background");
+          } else {
+              console.log("Running in foreground");
+          }
+          requestAnimationFrame(keepRunning);
+      }
+
+      document.addEventListener("visibilitychange", function () {
+          if (!document.hidden) {
+              console.log("Tab is back in focus, running at full speed.");
+          } else {
+              console.log("Tab is out of focus, but the game will continue running.");
+          }
+      });
+
+      // Start keeping the game running
+      keepRunning();
+  </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -58,9 +97,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/BuildHeartsGame.loader.js";
       var config = {
-        dataUrl: buildUrl + "/BuildHeartsGame.data",
-        frameworkUrl: buildUrl + "/BuildHeartsGame.framework.js",
-        codeUrl: buildUrl + "/BuildHeartsGame.wasm",
+        dataUrl: buildUrl + "/BuildHeartsGame.data.br",
+        frameworkUrl: buildUrl + "/BuildHeartsGame.framework.js.br",
+        codeUrl: buildUrl + "/BuildHeartsGame.wasm.br",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Sky Hi Soft",
         productName: "Hearts Games",
