@@ -129,6 +129,16 @@
               });
       }
   </script>
-  
+  <script>
+    mergeInto(LibraryManager.library, {
+        CopyTextToClipboard: function (text) {
+            var str = UTF8ToString(text); // Convert UTF8 string from Unity
+            CopyToClipboard(str); // Call the clipboard function defined earlier
+        }
+    });
+</script>
+
+
+
   </body>
 </html>
