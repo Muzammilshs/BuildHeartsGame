@@ -1,0 +1,7 @@
+{
+    "name": "MyCustomTemplate",
+    "description": "A custom WebGL template for Unity with a full-screen game canvas and loading bar.",
+    "html": "index.html",
+    "css": "style.css",
+    "js": "customScript.js"
+}
